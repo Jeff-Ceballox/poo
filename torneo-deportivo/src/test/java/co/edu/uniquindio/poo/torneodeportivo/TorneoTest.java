@@ -123,4 +123,11 @@ public class TorneoTest {
         
         LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
     }
+    @Test
+    public void torneoYaPasado() {
+        LOG.info("Inicio de prueba Torneo ya pasado...");
+        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 11, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0 ));
+       LOG.info("Fin de prueba Torneo ya pasado...");
+        
+    }
 }
