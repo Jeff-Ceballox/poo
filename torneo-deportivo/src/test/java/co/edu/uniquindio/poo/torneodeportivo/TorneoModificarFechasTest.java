@@ -122,8 +122,37 @@ public class TorneoModificarFechasTest {
         // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
         // Modificación de la fecha
-        torneo.setFechaCierreInscripciones(LocalDate.of(2023, 9, 16));
-        assertThrows(Throwable.class, ()->torneo.setFechaCierreInscripciones(LocalDate.of(2023, 9, 16)));        
-        LOG.info("Inicio de prueba modificar fecha de cierre de inscripciones valido...");
+        torneo.setFechaCierreInscripciones(LocalDate.of(2023, 8, 16));
+        assertEquals(LocalDate.of(2023, 8, 16), torneo.getFechaCierreInscripciones());
+        LOG.info("Fin de prueba modificar fecha de cierre de inscripciones valido...");
+    }
+     @Test
+    public void modificarFechaCierreInscripcionesNull() {
+        LOG.info("Inicio de prueba modificar fecha de cierre null...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
+        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
+        // Modificación de la fecha
+        assertThrows(Throwable.class, ()->torneo.setFechaCierreInscripciones(null));        
+        LOG.info("Fin de prueba modificar fecha de inicio de cierre null...");
+    }
+     @Test
+    public void modificarFechaCierrePosteriorInicioTorneo() {
+        LOG.info("Inicio de prueba modificar fecha de cierre porterio inicio torneo...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
+        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
+        // Modificación de la fecha
+        torneo.setFechaCierreInscripciones(LocalDate.of(2023, 10, 02));
+        assertThrows(Throwable.class, ()->torneo.setFechaInicio(LocalDate.of(2023, 10, 1)));
+        LOG.info("Fin de prueba modificar fecha de cierre posterior inicio torneo...");
+    }
+      @Test
+    public void modificarFechaCierreAnteriorFechaInicioInscripciones() {
+        LOG.info("Inicio de prueba modificar fecha de cierre anterior fecha Inicio inscripciones...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
+        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
+        // Modificación de la fecha
+         torneo.setFechaCierreInscripciones(LocalDate.of(2023, 7, 30));
+        assertThrows(Throwable.class, ()->torneo.setFechaInicioInscripciones(LocalDate.of(2023, 8,1)));
+        LOG.info("Fin de prueba modificar fecha de cierre anterior fecha Inicio inscripciones...");
     }
 }
