@@ -80,6 +80,10 @@ public class Torneo {
         assert fechaInicioInscripciones != null;
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
+    public void setFechaCierreInscripciones(LocalDate fechaCierreInscripciones) {
+        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        this.fechaCierreInscripciones = fechaCierreInscripciones;
+    }
 
     
 }
